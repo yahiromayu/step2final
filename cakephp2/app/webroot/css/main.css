@@ -1,0 +1,45 @@
+body{
+	background-color: #666;
+}
+
+#container {
+	width: 800px;
+	margin: 0 auto;
+	background-color: #FFF;
+}
+
+#header:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#header_menu{
+	margin-top: 10px;
+	margin-right: 20%;
+	float: right;
+}
+
+div.left{
+	width : 60%;
+	padding : 10px;
+	display: inline-block;
+	float: left;
+}
+
+div.right{
+	width : 35%;
+	padding : 10px;
+	margin-top: 0;
+	display: inline-block;
+}
+
+div.error-message{
+	border:1px solid red;
+	background-color: #FAA;
+}
+
+div.comment{
+	width: 100%;
+	word-wrap:break-word;
+}
