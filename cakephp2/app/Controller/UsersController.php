@@ -49,24 +49,25 @@ class UsersController extends AppController {
   }
 
   public function login(){
+    $this->Session->setFlash("");
     if($this->request->is('post')){//デフォルトでpost
     	$this->User->set($this->request->data);
     	unset($this->User->validate["username"][1]);//なんか動かない
     	if($this->User->validates()) {
-		  if($this->Auth->login()){
-		    //ログインユーザ名取得
-		    $user = $this->request->data("User.username");
-		    //ログイン中はsessionにidを保存
-		    $this->Session->write("id",$this->User->find("first",array("conditions"=>array("username"=>$user)))["User"]["id"]);
-		    //ログイン中はsessionにユーザ名保存
-		    $this->Session->write("user",$user);
-		    return $this->redirect('/twits/twit');
-		  }
-		  else{
-		    $this->Session->setFlash('<div class="error-message">※ユーザ名とパスワードが一致しません。</div>');
-		  }
-		}
-	}
+  		  if($this->Auth->login()){
+  		    //ログインユーザ名取得
+  		    $user = $this->request->data("User.username");
+  		    //ログイン中はsessionにidを保存
+  		    $this->Session->write("id",$this->User->find("first",array("conditions"=>array("username"=>$user)))["User"]["id"]);
+  		    //ログイン中はsessionにユーザ名保存
+  		    $this->Session->write("user",$user);
+  		    return $this->redirect('/twits/twit');
+  		  }
+  		  else{
+  		    $this->Session->setFlash('<div class="error-message">※ユーザ名とパスワードが一致しません。</div>');
+  		  }
+  		}
+	  }
 
     if($this->Session->check("id")){
       return $this->redirect("/twits/twit");
